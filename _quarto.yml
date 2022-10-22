@@ -1,0 +1,14 @@
+project:
+  title: "learn-cs"
+  output-dir: _output
+
+author: "shitao"
+format:
+  html:
+    mainfont: "Times New Roman"
+    fontsize: 1.3em
+toc: true
+number-sections: true
+
+execute: 
+  freeze: auto

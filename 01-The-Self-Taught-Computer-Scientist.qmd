@@ -1,0 +1,92 @@
+---
+title: "Self-Taught-CS"
+date: "2022-10-22"
+---
+
+# Algorithms
+
+## Recursion
+
+An iterative algorithm that calculates the factorial of a number, `n`:
+
+```{python}
+def factorical(n):
+  the_product = 1
+  while n > 0:
+    the_product *= n
+    n = n - 1
+  return the_product
+
+factorical(5)
+```
+
+How to write the same algorithm recursively:
+
+```{python}
+def factorical(n):
+  if n == 0:
+    return 1
+  return n * factorical(n - 1)
+
+factorical(5)
+```
+
+## Search Algorithms
+
+### Linear Search
+
+```{python}
+def linear_search(a_list, n):
+  for i in a_list:
+    if i == n:
+      return True
+  return False
+
+a_list = [1, 8, 32, 91, 5, 15, 9, 100, 3]
+linear_search(a_list, 91)
+```
+
+A linear search's time complexity is $O(n)$. You should consider using a linear search when your data is not sorted.
+
+Using Python's `in` keyword, you performed a linear search on `unsorted_list` in just one line of code:
+
+```{python}
+unsorted_list = [1, 45, 4, 32, 3]
+print(45 in unsorted_list)
+```
+
+```{python}
+print("a" in "apple")
+```
+
+## Binary Search
+
+```{python}
+def binary_search(a_list, n):
+  first = 0
+  last = len(a_list) - 1
+  while last >= first:
+    mid = (first + last) // 2
+    if a_list[mid] == n:
+      return True
+    else:
+      if n < a_list[mid]:
+        last = mid - 1
+      else:
+        first = mid + 1
+  return False
+
+a_list = [1, 3, 5, 8, 9, 91, 100]
+binary_search(a_list, 91)
+```
+
+A binary search takes $O(\log n)$ time. It is more efficient than a linear search because you don't have to search an entire list. Because of how efficient a binary search is, if you have sorted data you need to search, it is usually best to use one. However, even if you have unsorted data, sometimes it is worth sorting it to take advantage of binary search.
+
+The key to writing a binary search using Python's built-in tools is to use `bisect_left` from the `bisect` module, which finds the index of an existing element in a sorted list using binary search:
+
+```{python}
+from bisect import bisect_left
+
+sorted_fruits = ["apple", "banana", "orange", "plum"]
+bisect_left(sorted_fruits, "banana")
+```
